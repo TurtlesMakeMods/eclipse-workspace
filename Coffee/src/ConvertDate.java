@@ -1,6 +1,4 @@
 import java.util.Scanner;
-import java.util.Calendar;
-import java.util.Calendar.Builder;
 //import java.util.boinky;
 /**
  * AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
@@ -24,7 +22,7 @@ public class ConvertDate {
 	
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
-		Builder builder = new Builder();
+		//Builder builder = new Builder();
 		//Calendar calendar = Calendar();
 		int monthNumber = 0;
 		int day = 0;
@@ -36,16 +34,32 @@ public class ConvertDate {
 		System.out.println("Enter a date in MM/DD/YYYY format");
 		input = scan.nextLine();
 		
-		if (input.substring(0,1).equals("0"))
+		if (input.substring(0,1).equals("0")) {
 			monthNumber = Integer.parseInt(input.substring(0,2));
-		else if ((Integer.parseInt(input.substring(0,1)) <= 1) || (Integer.parseInt(input.substring(0,1)) >= 12))
+			if (Integer.parseInt(input.substring(3,5)) <= 31)
+				day = Integer.parseInt(input.substring(3,5));
+			else {
+				System.out.println("Error: Invalid Input");
+				System.exit(0);
+			}
+			year = Integer.parseInt(input.substring(6,10));
+		}
+		else if ((Integer.parseInt(input.substring(0,1)) >= 1) || (Integer.parseInt(input.substring(0,1)) <= 12)) {
 			monthNumber = Integer.parseInt(input.substring(0,1));
+			if (Integer.parseInt(input.substring(2,4)) <= 31)
+				day = Integer.parseInt(input.substring(2,4));
+			else {
+				System.out.println("Error: Invalid Input");
+				System.exit(0);
+			}
+			year = Integer.parseInt(input.substring(5,9));
+		}
 		else {
 			System.out.println("Error: Invalid Input");
 			System.exit(0);
 		}
 		
-		if (Integer.parseInt(input.substring(3,5)) <= 31)
+		/*if (Integer.parseInt(input.substring(3,5)) <= 31)
 			day = Integer.parseInt(input.substring(3,5));
 		else {
 			System.out.println("Error: Invalid Input");
@@ -53,6 +67,7 @@ public class ConvertDate {
 		}
 		
 		year = Integer.parseInt(input.substring(6,10));
+		*/
 		
 		System.out.println(monthNumber);
 		System.out.println(day);
@@ -60,51 +75,51 @@ public class ConvertDate {
 		
 		switch (monthNumber) {
 			case 1: {
-				monthName = "January";
+				monthName = monthNames[monthNumber-1];
 				break;
 			}
 			case 2: {
-				monthName = "February";
+				monthName = monthNames[monthNumber-1];
 				break;
 			}
 			case 3: {
-				monthName = "March";
+				monthName = monthNames[monthNumber-1];
 				break;
 			}
 			case 4: {
-				monthName = "April";
+				monthName = monthNames[monthNumber-1];
 				break;
 			}
 			case 5: {
-				monthName = "May";
+				monthName = monthNames[monthNumber-1];
 				break;
 			}
 			case 6: {
-				monthName = "June";
+				monthName = monthNames[monthNumber-1];
 				break;
 			}
 			case 7: {
-				monthName = "July";
+				monthName = monthNames[monthNumber-1];
 				break;
 			}
 			case 8: {
-				monthName = "August";
+				monthName = monthNames[monthNumber-1];
 				break;
 			}
 			case 9: {
-				monthName = "September";
+				monthName = monthNames[monthNumber-1];
 				break;
 			}
 			case 10: {
-				monthName = "October";
+				monthName = monthNames[monthNumber-1];
 				break;
 			}
 			case 11: {
-				monthName = "November";
+				monthName = monthNames[monthNumber-1];
 				break;
 			}
 			case 12: {
-				monthName = "December";
+				monthName = monthNames[monthNumber-1];
 				break;
 			}
 		}
