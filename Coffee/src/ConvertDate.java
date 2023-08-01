@@ -1,5 +1,12 @@
 import java.util.Scanner;
-
+import java.util.Calendar;
+import java.util.Calendar.Builder;
+//import java.util.boinky;
+/**
+ * AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+ * @author S26600478
+ *
+ */
 public class ConvertDate {
 	public static final int JANUARY = 31;
 	public static final int FEBRUARY = 28;
@@ -17,22 +24,90 @@ public class ConvertDate {
 	
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
-		int monthNumber;
-		int monthName;
-		int day;
+		Builder builder = new Builder();
+		//Calendar calendar = Calendar();
+		int monthNumber = 0;
+		int day = 0;
+		int year = 0;
 		String input;
+		String monthName = "";
+		String[] monthNames = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 		
 		System.out.println("Enter a date in MM/DD/YYYY format");
 		input = scan.nextLine();
 		
-		
 		if (input.substring(0,1).equals("0"))
 			monthNumber = Integer.parseInt(input.substring(0,2));
-		else
+		else if ((Integer.parseInt(input.substring(0,1)) <= 1) || (Integer.parseInt(input.substring(0,1)) >= 12))
 			monthNumber = Integer.parseInt(input.substring(0,1));
+		else {
+			System.out.println("Error: Invalid Input");
+			System.exit(0);
+		}
+		
+		if (Integer.parseInt(input.substring(3,5)) <= 31)
+			day = Integer.parseInt(input.substring(3,5));
+		else {
+			System.out.println("Error: Invalid Input");
+			System.exit(0);
+		}
+		
+		year = Integer.parseInt(input.substring(6,10));
 		
 		System.out.println(monthNumber);
-		//if ()
+		System.out.println(day);
+		System.out.println(year);
+		
+		switch (monthNumber) {
+			case 1: {
+				monthName = "January";
+				break;
+			}
+			case 2: {
+				monthName = "February";
+				break;
+			}
+			case 3: {
+				monthName = "March";
+				break;
+			}
+			case 4: {
+				monthName = "April";
+				break;
+			}
+			case 5: {
+				monthName = "May";
+				break;
+			}
+			case 6: {
+				monthName = "June";
+				break;
+			}
+			case 7: {
+				monthName = "July";
+				break;
+			}
+			case 8: {
+				monthName = "August";
+				break;
+			}
+			case 9: {
+				monthName = "September";
+				break;
+			}
+			case 10: {
+				monthName = "October";
+				break;
+			}
+			case 11: {
+				monthName = "November";
+				break;
+			}
+			case 12: {
+				monthName = "December";
+				break;
+			}
+		}
+		System.out.println(monthName);
 	}
-
 }
