@@ -1,7 +1,21 @@
 import java.util.Scanner;
+import java.time.LocalDate;
 //import java.util.boinky;
 /**
- * AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+ * Titus Domey's ConvertDate program: "allows
+ * the user to enter a date using digits and slashes 
+ * (for example, "6/24/2014"), and receive an output that 
+ * displays the date with the month shown as a word (Such as 
+ * "June 24, 2014").  It allows for the fact that the user might or 
+ * might not precede a month or day number with a zero (for 
+ * example the user might type "06/24/2014" or "6/24/2014"). 
+ * It does not allow the user to enter an invalid date, defined as one 
+ * for which the month is less than 1 or more than 12, 
+ * or one for which the day number is less 
+ * than one or more than the number of days in the specified month.  
+ * Also, it displays the date's ordinal position in the year. 
+ * For example, 6/24/2014 is the 175th day of the year."
+ * (Courtesy of Schoology)
  * @author S26600478
  *
  */
@@ -22,11 +36,11 @@ public class ConvertDate {
 	
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
-		//Builder builder = new Builder();
-		//Calendar calendar = Calendar();
+		boolean leapYear = false;
 		int monthNumber = 0;
 		int day = 0;
 		int year = 0;
+		int dayOfYear;
 		String input;
 		String monthName = "";
 		String[] monthNames = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
@@ -35,6 +49,10 @@ public class ConvertDate {
 		input = scan.nextLine();
 		
 		if (input.substring(0,1).equals("0")) {
+			if (input.charAt(1) == '/') {
+				System.out.println("Error: Invalid Input");
+				System.exit(0);
+			}
 			monthNumber = Integer.parseInt(input.substring(0,2));
 			if (Integer.parseInt(input.substring(3,5)) <= 31)
 				day = Integer.parseInt(input.substring(3,5));
@@ -44,7 +62,7 @@ public class ConvertDate {
 			}
 			year = Integer.parseInt(input.substring(6,10));
 		}
-		else if ((Integer.parseInt(input.substring(0,1)) >= 1) || (Integer.parseInt(input.substring(0,1)) <= 12)) {
+		else if ((Integer.parseInt(input.substring(0,1)) >= 1) && (Integer.parseInt(input.substring(0,1)) <= 12)) {
 			monthNumber = Integer.parseInt(input.substring(0,1));
 			if (Integer.parseInt(input.substring(2,4)) <= 31)
 				day = Integer.parseInt(input.substring(2,4));
@@ -59,19 +77,7 @@ public class ConvertDate {
 			System.exit(0);
 		}
 		
-		/*if (Integer.parseInt(input.substring(3,5)) <= 31)
-			day = Integer.parseInt(input.substring(3,5));
-		else {
-			System.out.println("Error: Invalid Input");
-			System.exit(0);
-		}
-		
-		year = Integer.parseInt(input.substring(6,10));
-		*/
-		
-		System.out.println(monthNumber);
-		System.out.println(day);
-		System.out.println(year);
+		LocalDate date = LocalDate.of(year, monthNumber, day);
 		
 		switch (monthNumber) {
 			case 1: {
@@ -123,6 +129,10 @@ public class ConvertDate {
 				break;
 			}
 		}
-		System.out.println(monthName);
+		
+		dayOfYear = date.getDayOfYear();
+		
+		System.out.println("The day is "+monthName+" "+day+", "+year);
+		System.out.println("It is day #"+dayOfYear+" of the year "+year);
 	}
 }
