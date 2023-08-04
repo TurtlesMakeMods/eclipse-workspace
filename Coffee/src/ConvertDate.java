@@ -47,36 +47,40 @@ public class ConvertDate {
 		
 		System.out.println("Enter a date in MM/DD/YYYY format");
 		input = scan.nextLine();
-		
-		if (input.substring(0,1).equals("0")) {
-			if (input.charAt(1) == '/') {
-				System.out.println("Error: Invalid Input");
-				System.exit(0);
+		try {
+			if (input.substring(0,1).equals("0")) {
+				monthNumber = Integer.parseInt(input.substring(0,2));
+				if (Integer.parseInt(input.substring(3,5)) <= 31)
+					day = Integer.parseInt(input.substring(3,5));
+				else {
+					System.out.println("Error: Invalid Input");
+					System.exit(0);
+				}
+				year = Integer.parseInt(input.substring(6,10));
 			}
-			monthNumber = Integer.parseInt(input.substring(0,2));
-			if (Integer.parseInt(input.substring(3,5)) <= 31)
-				day = Integer.parseInt(input.substring(3,5));
+			else if ((Integer.parseInt(input.substring(0,1)) >= 1) || (Integer.parseInt(input.substring(0,2)) <= 12)) {
+				monthNumber = Integer.parseInt(input.substring(0,1));
+				if (Integer.parseInt(input.substring(2,4)) <= 31)
+					day = Integer.parseInt(input.substring(2,4));
+				else {
+					System.out.println("Error: Invalid Input");
+					System.exit(0);
+				}
+				year = Integer.parseInt(input.substring(5,9));
+			}
 			else {
 				System.out.println("Error: Invalid Input");
 				System.exit(0);
 			}
-			year = Integer.parseInt(input.substring(6,10));
 		}
-		else if ((Integer.parseInt(input.substring(0,1)) >= 1) && (Integer.parseInt(input.substring(0,1)) <= 12)) {
-			monthNumber = Integer.parseInt(input.substring(0,1));
-			if (Integer.parseInt(input.substring(2,4)) <= 31)
-				day = Integer.parseInt(input.substring(2,4));
-			else {
-				System.out.println("Error: Invalid Input");
-				System.exit(0);
-			}
-			year = Integer.parseInt(input.substring(5,9));
-		}
-		else {
+		catch (java.lang.NumberFormatException e) {
 			System.out.println("Error: Invalid Input");
 			System.exit(0);
 		}
-		
+		catch (java.lang.StringIndexOutOfBoundsException f) {
+			System.out.println("Error: Invalid Input");
+			System.exit(0);
+		}
 		LocalDate date = LocalDate.of(year, monthNumber, day);
 		
 		switch (monthNumber) {
