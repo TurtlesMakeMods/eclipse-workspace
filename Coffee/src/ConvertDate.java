@@ -21,7 +21,6 @@ import java.time.LocalDate;
  */
 public class ConvertDate {
 	
-	
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		boolean leapYear = false;
