@@ -16,9 +16,9 @@ public class MouseTest {
             }
         }
 
-        System.out.println("# of times the mouse escaped: " + mouse.getEscape()+"%");
-        System.out.println("# of times the mouse drowned: " + mouse.getDrown()+"%");
-        System.out.println("# of times the mouse starved: " + mouse.getStarve()+"%");
+        System.out.println("% of times the mouse escaped: " + mouse.getEscape()+"%");
+        System.out.println("% of times the mouse drowned: " + mouse.getDrown()+"%");
+        System.out.println("% of times the mouse starved: " + mouse.getStarve()+"%");
 
     }
 
